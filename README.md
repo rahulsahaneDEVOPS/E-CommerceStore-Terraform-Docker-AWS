@@ -1,348 +1,350 @@
-# E-Commerce Microservices Application
+# 🛒 E-Commerce Store on AWS using Terraform & Docker
 
-A full-stack MERN e-commerce application built with microservices architecture, featuring 4 separate Node.js backend services and a React frontend.
+<p align="center">
 
-## 🏗️ Architecture Overview
+![Terraform](https://img.shields.io/badge/Terraform-IaC-623CE4?logo=terraform)
+![AWS](https://img.shields.io/badge/AWS-EC2-FF9900?logo=amazonaws)
+![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker)
+![Node.js](https://img.shields.io/badge/Node.js-339933?logo=node.js)
+![GitHub](https://img.shields.io/badge/GitHub-Portfolio-black?logo=github)
 
-This application demonstrates modern microservices architecture with the following components:
+</p>
 
-```
-Frontend (React) → API Gateway → Microservices
-                                    ├── User Service (3001)
-                                    ├── Product Service (3002)
-                                    ├── Cart Service (3003)
-                                    └── Order Service (3004)
-```
+> Deploy a multi-service Node.js E-Commerce application on **AWS EC2** using **Terraform** for Infrastructure as Code and **Docker** for containerization.
 
-## 🔧 Technology Stack
+---
 
-### Backend
-- **Runtime**: Node.js with Express.js
-- **Database**: MongoDB with Mongoose ODM
-- **Authentication**: JWT tokens
-- **Architecture**: RESTful APIs with microservices
+# 📚 Table of Contents
 
-### Frontend
-- **Framework**: React 18
-- **Routing**: React Router
-- **State Management**: React Query + Context API
-- **HTTP Client**: Axios
-- **Styling**: CSS3 with responsive design
+- Project Overview
+- Features
+- Architecture
+- Tech Stack
+- Repository Structure
+- Terraform Modules
+- Docker Services
+- Deployment Workflow
+- Installation
+- Verification
+- Screenshots
+- Troubleshooting
+- Cleanup
+- Future Enhancements
+- Author
+- License
 
-## 📦 Microservices
+# 📖 Project Overview
 
-### 1. User Service (Port 3001)
-- User registration and authentication
-- Profile management
-- JWT token generation and validation
-- User data persistence
+This project provisions an AWS EC2 instance with Terraform and deploys a Dockerized
+microservices-based e-commerce application consisting of a frontend and four backend
+services (User, Product, Cart and Order).
 
-**Endpoints:**
-- `POST /api/auth/register` - User registration
-- `POST /api/auth/login` - User authentication
-- `GET /api/auth/me` - Get current user
-- `GET /api/users/profile` - Get user profile
-- `PUT /api/users/profile` - Update user profile
+# ✨ Features
 
-### 2. Product Service (Port 3002)
-- Product catalog management
-- Category management
-- Product search and filtering
-- Inventory tracking
+- Infrastructure as Code using Terraform
+- Dockerized microservices
+- AWS EC2 deployment
+- Automated provisioning using userdata.sh
+- Production-style repository layout
+- Screenshot based deployment evidence
 
-**Endpoints:**
-- `GET /api/products` - Get products with filtering/pagination
-- `GET /api/products/:id` - Get single product
-- `POST /api/products` - Create product (admin)
-- `PUT /api/products/:id` - Update product (admin)
-- `DELETE /api/products/:id` - Soft delete product (admin)
-- `GET /api/categories` - Get all categories
-- `POST /api/categories` - Create category (admin)
+# 🏗️ Architecture
 
-### 3. Cart Service (Port 3003)
-- Shopping cart management
-- Add/remove/update cart items
-- Cart validation
-- Integration with Product Service
-
-**Endpoints:**
-- `GET /api/cart/:userId` - Get user's cart
-- `POST /api/cart/:userId/items` - Add item to cart
-- `PUT /api/cart/:userId/items/:productId` - Update cart item
-- `DELETE /api/cart/:userId/items/:productId` - Remove cart item
-- `DELETE /api/cart/:userId` - Clear entire cart
-- `POST /api/cart/:userId/validate` - Validate cart items
-
-### 4. Order Service (Port 3004)
-- Order creation and management
-- Payment processing simulation
-- Order status tracking
-- Integration with Cart and Product Services
-
-**Endpoints:**
-- `GET /api/orders/user/:userId` - Get user's orders
-- `GET /api/orders/:id` - Get single order
-- `POST /api/orders` - Create new order
-- `PUT /api/orders/:id/status` - Update order status
-- `DELETE /api/orders/:id` - Cancel order
-- `POST /api/payments/process` - Process payment
-- `POST /api/payments/refund` - Process refund
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js 16+ and npm
-- MongoDB (local or cloud instance)
-
-### Installation
-
-1. **Clone the repository**
-```bash
-git clone <repository-url>
-cd ecommerce-microservices
+```mermaid
+flowchart LR
+Developer-->GitHub
+GitHub-->Terraform
+Terraform-->AWS
+AWS-->EC2
+EC2-->Docker
+Docker-->Frontend
+Docker-->User
+Docker-->Product
+Docker-->Cart
+Docker-->Order
+Frontend-->User
+Frontend-->Product
+Frontend-->Cart
+Frontend-->Order
 ```
 
-2. **Install dependencies for each service**
-```bash
+# ☁️ Tech Stack
 
-# Install User Service dependencies
-cd backend/user-service && npm install
+| Layer | Technology |
+|-------|------------|
+| Cloud | AWS EC2 |
+| IaC | Terraform |
+| Containers | Docker |
+| Runtime | Node.js |
+| OS | Ubuntu |
+| Version Control | Git & GitHub |
 
-# Install Product Service dependencies
-cd ../product-service && npm install
+# 📂 Repository Structure
 
-# Install Cart Service dependencies
-cd ../cart-service && npm install
-
-# Install Order Service dependencies
-cd ../order-service && npm install
-
-# Install Frontend dependencies
-cd ../../frontend && npm install
-```
-
-3. **Set up environment variables**
-
-Create `.env` files in each service directory:
-
-**backend/user-service/.env:**
-```env
-PORT=3001
-MONGODB_URI=mongodb://localhost:27017/ecommerce_users
-JWT_SECRET=your-jwt-secret-key
-```
-
-**backend/product-service/.env:**
-```env
-PORT=3002
-MONGODB_URI=mongodb://localhost:27017/ecommerce_products
-```
-
-**backend/cart-service/.env:**
-```env
-PORT=3003
-MONGODB_URI=mongodb://localhost:27017/ecommerce_carts
-PRODUCT_SERVICE_URL=http://localhost:3002
-```
-
-**backend/order-service/.env:**
-```env
-PORT=3004
-MONGODB_URI=mongodb://localhost:27017/ecommerce_orders
-CART_SERVICE_URL=http://localhost:3003
-PRODUCT_SERVICE_URL=http://localhost:3002
-USER_SERVICE_URL=http://localhost:3001
-```
-
-**frontend/.env:**
-```env
-REACT_APP_USER_SERVICE_URL=http://localhost:3001
-REACT_APP_PRODUCT_SERVICE_URL=http://localhost:3002
-REACT_APP_CART_SERVICE_URL=http://localhost:3003
-REACT_APP_ORDER_SERVICE_URL=http://localhost:3004
-```
-
-### Running the Application
-
-
-** Run services individually**
-
-Terminal 1 - User Service:
-```bash
-cd backend/user-service && npm start
-```
-
-Terminal 2 - Product Service:
-```bash
-cd backend/product-service && npm start
-```
-
-Terminal 3 - Cart Service:
-```bash
-cd backend/cart-service && npm start
-```
-
-Terminal 4 - Order Service:
-```bash
-cd backend/order-service && npm start
-```
-
-Terminal 5 - Frontend:
-```bash
-cd frontend && npm start
-```
-
-The application will be available at:
-- Frontend: http://localhost:3000
-- User Service: http://localhost:3001
-- Product Service: http://localhost:3002
-- Cart Service: http://localhost:3003
-- Order Service: http://localhost:3004
-
-## 🎯 Features
-
-### User Features
-- **Authentication**: Register and login with JWT tokens
-- **Product Browsing**: View products with search, filtering, and pagination
-- **Shopping Cart**: Add, update, and remove items
-- **Checkout Process**: Complete order placement with shipping and payment
-- **Order Management**: View order history and track status
-- **Profile Management**: Update personal information and addresses
-
-### Admin Features (Future Enhancement)
-- Product and category management
-- Order status updates
-- Inventory management
-- User management
-
-### Technical Features
-- **Microservices Architecture**: Loosely coupled services
-- **RESTful APIs**: Standard HTTP methods and status codes
-- **Data Validation**: Input validation and error handling
-- **Cross-Service Communication**: HTTP-based service interactions
-- **Responsive Design**: Mobile-friendly user interface
-- **Error Handling**: Comprehensive error management
-- **Loading States**: User-friendly loading indicators
-
-## 📁 Project Structure
-
-```
-ecommerce-microservices/
+```text
+.
+├── frontend/
 ├── backend/
 │   ├── user-service/
-│   │   ├── models/
-│   │   ├── routes/
-│   │   ├── middleware/
-│   │   ├── server.js
-│   │   └── package.json
 │   ├── product-service/
-│   │   ├── models/
-│   │   ├── routes/
-│   │   ├── server.js
-│   │   └── package.json
 │   ├── cart-service/
-│   │   ├── models/
-│   │   ├── routes/
-│   │   ├── server.js
-│   │   └── package.json
 │   └── order-service/
-│       ├── models/
-│       ├── routes/
-│       ├── server.js
-│       └── package.json
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── contexts/
-│   │   ├── pages/
-│   │   ├── services/
-│   │   ├── App.js
-│   │   └── index.js
-│   └── package.json
-├── package.json
+├── terraform/
+│   ├── provider.tf
+│   ├── network.tf
+│   ├── security-group.tf
+│   ├── ec2.tf
+│   ├── variables.tf
+│   ├── outputs.tf
+│   └── userdata.sh
+├── screenshots/
 └── README.md
 ```
 
-## 🔧 API Testing
+# 🌍 Terraform Resources
 
-You can test the APIs using tools like Postman or curl:
+| File | Purpose |
+|------|---------|
+| provider.tf | AWS provider configuration |
+| network.tf | Network configuration |
+| security-group.tf | Security group rules |
+| ec2.tf | EC2 instance provisioning |
+| variables.tf | Input variables |
+| outputs.tf | Terraform outputs |
+| userdata.sh | Bootstrap Docker & application |
+
+# 🐳 Docker Services
+
+- Frontend
+- User Service
+- Product Service
+- Cart Service
+- Order Service
+
+# 🚀 Deployment Workflow
+
+1. Clone repository
+2. Configure AWS credentials
+3. terraform init
+4. terraform plan
+5. terraform apply
+6. SSH into EC2
+7. User data installs Docker
+8. Build/Run containers
+9. Verify application
+
+# ⚙️ Installation
 
 ```bash
-# Health check for all services
-curl http://localhost:3001/health
-curl http://localhost:3002/health
-curl http://localhost:3003/health
-curl http://localhost:3004/health
-
-# Register a new user
-curl -X POST http://localhost:3001/api/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{"firstName":"John","lastName":"Doe","email":"john@example.com","password":"password123"}'
-
-# Get products
-curl http://localhost:3002/api/products
-
-# Get categories
-curl http://localhost:3002/api/categories
+git clone https://github.com/rahulsahaneDEVOPS/E-CommerceStore-Terraform-Docker-AWS.git
+cd E-CommerceStore-Terraform-Docker-AWS/terraform
+terraform init
+terraform plan
+terraform apply
 ```
 
-## 🚀 Deployment
+# ✅ Verification
 
-### Production Considerations
-
-1. **Environment Variables**: Use proper environment variable management
-2. **Database**: Use MongoDB Atlas or other managed database services
-3. **Process Management**: Use PM2 or similar for process management
-4. **Load Balancing**: Implement load balancing for high availability
-5. **Monitoring**: Add logging and monitoring solutions
-6. **Security**: Implement rate limiting, CORS, and other security measures
-
-### Docker Deployment (Future Enhancement)
-
-Each service can be containerized with Docker:
-
-```dockerfile
-# Example Dockerfile for a service
-FROM node:16-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm install --production
-COPY . .
-EXPOSE 3001
-CMD ["npm", "start"]
+```bash
+terraform state list
+terraform output
+docker ps
+docker images
+docker logs <container>
 ```
 
-## 🤝 Contributing
+# 📸 Deployment Screenshots
 
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
+## 01. 01 User Service Docker Build
 
-## 📝 License
+![01 User Service Docker Build](screenshots/01_user_service_docker_build.png)
 
-This project is licensed under the MIT License.
+Brief description of this deployment step.
 
-## 🆘 Support
+## 02. 02 All Docker Images
 
-For support and questions:
-- Check the documentation
-- Review API endpoints and expected payloads
-- Ensure all services are running
-- Verify database connections
-- Check environment variables
+![02 All Docker Images](screenshots/02_all_docker_images.png)
 
-## 🔮 Future Enhancements
+Brief description of this deployment step.
 
-- **API Gateway**: Centralized request routing and authentication
-- **Docker Containerization**: Full containerization with docker-compose
-- **Message Queues**: Async communication between services
-- **Caching**: Redis caching for improved performance
-- **Search Engine**: Elasticsearch for advanced product search
-- **File Upload**: Image upload and management
-- **Email Service**: Order confirmations and notifications
-- **Admin Dashboard**: Administrative interface
-- **Analytics**: Order and user analytics
-- **Payment Integration**: Real payment gateway integration
+## 03. 03 User Service Container Running
+
+![03 User Service Container Running](screenshots/03_user_service_container_running.png)
+
+Brief description of this deployment step.
+
+## 04. 04 Dockerhub Tagged Images
+
+![04 Dockerhub Tagged Images](screenshots/04_dockerhub_tagged_images.png)
+
+Brief description of this deployment step.
+
+## 05. 05 Dockerhub Repositories
+
+![05 Dockerhub Repositories](screenshots/05_dockerhub_repositories.png)
+
+Brief description of this deployment step.
+
+## 06. 06 Terraform Version
+
+![06 Terraform Version](screenshots/06_terraform_version.png)
+
+Brief description of this deployment step.
+
+## 07. 07 Iam User Created
+
+![07 Iam User Created](screenshots/07_iam_user_created.png)
+
+Brief description of this deployment step.
+
+## 08. 08 Access Key Created
+
+![08 Access Key Created](screenshots/08_access_key_created.png)
+
+Brief description of this deployment step.
+
+## 09. 09 Aws Configure
+
+![09 Aws Configure](screenshots/09_aws_configure.png)
+
+Brief description of this deployment step.
+
+## 10. 10 Aws Identity
+
+![10 Aws Identity](screenshots/10_aws_identity.png)
+
+Brief description of this deployment step.
+
+## 11. 11 Terraform Files Created
+
+![11 Terraform Files Created](screenshots/11_terraform_files_created.png)
+
+Brief description of this deployment step.
+
+## 12. 12 Terraform Files Created
+
+![12 Terraform Files Created](screenshots/12_terraform_files_created.png)
+
+Brief description of this deployment step.
+
+## 13. 13 Network Tf
+
+![13 Network Tf](screenshots/13_network_tf.png)
+
+Brief description of this deployment step.
+
+## 14. 14 A Security Group Tf
+
+![14 A Security Group Tf](screenshots/14_A_security_group_tf.png)
+
+Brief description of this deployment step.
+
+## 15. 14 Security Group Tf
+
+![14 Security Group Tf](screenshots/14_security_group_tf.png)
+
+Brief description of this deployment step.
+
+## 16. 15 Ec2 Tf
+
+![15 Ec2 Tf](screenshots/15_ec2_tf.png)
+
+Brief description of this deployment step.
+
+## 17. 16 Terraform Init
+
+![16 Terraform Init](screenshots/16_terraform_init.png)
+
+Brief description of this deployment step.
+
+## 18. 17 Terraform Validate
+
+![17 Terraform Validate](screenshots/17_terraform_validate.png)
+
+Brief description of this deployment step.
+
+## 19. 18 Terraform Plan Success
+
+![18 Terraform Plan Success](screenshots/18_terraform_plan_success.png)
+
+Brief description of this deployment step.
+
+## 20. 19 Terraform Apply Success
+
+![19 Terraform Apply Success](screenshots/19_terraform_apply_success.png)
+
+Brief description of this deployment step.
+
+## 21. 20 Ec2 Ssh Login
+
+![20 Ec2 Ssh Login](screenshots/20_ec2_ssh_login.png)
+
+Brief description of this deployment step.
+
+## 22. 21 Docker Ps
+
+![21 Docker Ps](screenshots/21_docker_ps.png)
+
+Brief description of this deployment step.
+
+## 23. 22 Frontend Live
+
+![22 Frontend Live](screenshots/22_frontend_live.png)
+
+Brief description of this deployment step.
+
+## 24. 23 Docker Images
+
+![23 Docker Images](screenshots/23_docker_images.png)
+
+Brief description of this deployment step.
+
+## 25. 24 Cloud Init Status
+
+![24 Cloud Init Status](screenshots/24_cloud_init_status.png)
+
+Brief description of this deployment step.
+
+## 26. 25 Userdata Log
+
+![25 Userdata Log](screenshots/25_userdata_log.png)
+
+Brief description of this deployment step.
+
+
+# 🛠️ Troubleshooting
+
+| Issue | Resolution |
+|------|------------|
+| Terraform init fails | Verify AWS credentials |
+| EC2 not reachable | Check Security Group and key pair |
+| Docker container stopped | Review docker logs |
+| Port conflict | Verify exposed ports |
+| App not loading | Confirm services are running |
+
+# 🧹 Cleanup
+
+```bash
+terraform destroy
+```
+
+# 🚀 Future Enhancements
+
+- Application Load Balancer
+- Auto Scaling Group
+- Amazon RDS
+- GitHub Actions CI/CD
+- CloudWatch Monitoring
+- HTTPS with ACM
+
+# 👨‍💻 Author
+
+**Rahul Sahane**
+
+Linux & Cloud Administrator • RHCSA • RHCE • Azure Certified
+
+GitHub: https://github.com/rahulsahaneDEVOPS
+
+# 📄 License
+
+MIT License.
