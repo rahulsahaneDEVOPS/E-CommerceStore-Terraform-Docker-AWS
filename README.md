@@ -113,7 +113,7 @@ Frontend-->Order
 | outputs.tf | Terraform outputs |
 | userdata.sh | Bootstrap Docker & application |
 
-# 🐳 Docker Services
+# Docker Services
 
 - Frontend
 - User Service
@@ -121,7 +121,7 @@ Frontend-->Order
 - Cart Service
 - Order Service
 
-# 🚀 Deployment Workflow
+# Deployment Workflow
 
 1. Clone repository
 2. Configure AWS credentials
@@ -133,7 +133,7 @@ Frontend-->Order
 8. Build/Run containers
 9. Verify application
 
-# ⚙️ Installation
+# Installation
 
 ```bash
 git clone https://github.com/rahulsahaneDEVOPS/E-CommerceStore-Terraform-Docker-AWS.git
@@ -143,7 +143,7 @@ terraform plan
 terraform apply
 ```
 
-# ✅ Verification
+# Verification
 
 ```bash
 terraform state list
@@ -153,166 +153,166 @@ docker images
 docker logs <container>
 ```
 
-# 📸 Deployment Screenshots
+# Deployment Screenshots
 
-## 01. 01 User Service Docker Build
+## Screenshot 01 — User Service Docker Build
 
 ![01 User Service Docker Build](screenshots/01_user_service_docker_build.png)
 
 Brief description of this deployment step.
 
-## 02. 02 All Docker Images
+## Screenshot 02 — All Docker Images
 
 ![02 All Docker Images](screenshots/02_all_docker_images.png)
 
 Brief description of this deployment step.
 
-## 03. 03 User Service Container Running
+## Screenshot 03 — User Service Container Running
 
 ![03 User Service Container Running](screenshots/03_user_service_container_running.png)
 
 Brief description of this deployment step.
 
-## 04. 04 Dockerhub Tagged Images
+## Screenshot 04 — Dockerhub Tagged Images
 
 ![04 Dockerhub Tagged Images](screenshots/04_dockerhub_tagged_images.png)
 
 Brief description of this deployment step.
 
-## 05. 05 Dockerhub Repositories
+## Screenshot 05 — Dockerhub Repositories
 
 ![05 Dockerhub Repositories](screenshots/05_dockerhub_repositories.png)
 
 Brief description of this deployment step.
 
-## 06. 06 Terraform Version
+## Screenshot 06 — Terraform Version
 
 ![06 Terraform Version](screenshots/06_terraform_version.png)
 
 Brief description of this deployment step.
 
-## 07. 07 Iam User Created
+## Screenshot 07 — Iam User Created
 
 ![07 Iam User Created](screenshots/07_iam_user_created.png)
 
 Brief description of this deployment step.
 
-## 08. 08 Access Key Created
+## Screenshot 08 — Access Key Created
 
 ![08 Access Key Created](screenshots/08_access_key_created.png)
 
 Brief description of this deployment step.
 
-## 09. 09 Aws Configure
+## Screenshot 09 — Aws Configure
 
 ![09 Aws Configure](screenshots/09_aws_configure.png)
 
 Brief description of this deployment step.
 
-## 10. 10 Aws Identity
+## Screenshot 10 — Aws Identity
 
 ![10 Aws Identity](screenshots/10_aws_identity.png)
 
 Brief description of this deployment step.
 
-## 11. 11 Terraform Files Created
+## Screenshot 11 — Terraform Files Created
 
 ![11 Terraform Files Created](screenshots/11_terraform_files_created.png)
 
 Brief description of this deployment step.
 
-## 12. 12 Terraform Files Created
+## Screenshot 12 — Terraform Files Created
 
 ![12 Terraform Files Created](screenshots/12_terraform_files_created.png)
 
 Brief description of this deployment step.
 
-## 13. 13 Network Tf
+## Screenshot 13 — Network Tf
 
 ![13 Network Tf](screenshots/13_network_tf.png)
 
 Brief description of this deployment step.
 
-## 14. 14 A Security Group Tf
+## Screenshot 14 — A Security Group Tf
 
 ![14 A Security Group Tf](screenshots/14_A_security_group_tf.png)
 
 Brief description of this deployment step.
 
-## 15. 14 Security Group Tf
+## Screenshot 15 — Security Group Tf
 
 ![14 Security Group Tf](screenshots/14_security_group_tf.png)
 
 Brief description of this deployment step.
 
-## 16. 15 Ec2 Tf
+## Screenshot 16 — Ec2 Tf
 
 ![15 Ec2 Tf](screenshots/15_ec2_tf.png)
 
 Brief description of this deployment step.
 
-## 17. 16 Terraform Init
+## Screenshot 17 — Terraform Init
 
 ![16 Terraform Init](screenshots/16_terraform_init.png)
 
 Brief description of this deployment step.
 
-## 18. 17 Terraform Validate
+## Screenshot 18 — Terraform Validate
 
 ![17 Terraform Validate](screenshots/17_terraform_validate.png)
 
 Brief description of this deployment step.
 
-## 19. 18 Terraform Plan Success
+## Screenshot 19 — Terraform Plan Success
 
 ![18 Terraform Plan Success](screenshots/18_terraform_plan_success.png)
 
 Brief description of this deployment step.
 
-## 20. 19 Terraform Apply Success
+## Screenshot 20 — Terraform Apply Success
 
 ![19 Terraform Apply Success](screenshots/19_terraform_apply_success.png)
 
 Brief description of this deployment step.
 
-## 21. 20 Ec2 Ssh Login
+## Screenshot 21 — Ec2 Ssh Login
 
 ![20 Ec2 Ssh Login](screenshots/20_ec2_ssh_login.png)
 
 Brief description of this deployment step.
 
-## 22. 21 Docker Ps
+## Screenshot 22 — Docker Ps
 
 ![21 Docker Ps](screenshots/21_docker_ps.png)
 
 Brief description of this deployment step.
 
-## 23. 22 Frontend Live
+## Screenshot 23 — Frontend Live
 
 ![22 Frontend Live](screenshots/22_frontend_live.png)
 
 Brief description of this deployment step.
 
-## 24. 23 Docker Images
+## Screenshot 24 — Docker Images
 
 ![23 Docker Images](screenshots/23_docker_images.png)
 
 Brief description of this deployment step.
 
-## 25. 24 Cloud Init Status
+## Screenshot 25 — Cloud Init Status
 
 ![24 Cloud Init Status](screenshots/24_cloud_init_status.png)
 
 Brief description of this deployment step.
 
-## 26. 25 Userdata Log
+## Screenshot 26 — Userdata Log
 
 ![25 Userdata Log](screenshots/25_userdata_log.png)
 
 Brief description of this deployment step.
 
 
-# 🛠️ Troubleshooting
+# Troubleshooting
 
 | Issue | Resolution |
 |------|------------|
@@ -322,13 +322,13 @@ Brief description of this deployment step.
 | Port conflict | Verify exposed ports |
 | App not loading | Confirm services are running |
 
-# 🧹 Cleanup
+# Cleanup
 
 ```bash
 terraform destroy
 ```
 
-# 🚀 Future Enhancements
+# Future Enhancements
 
 - Application Load Balancer
 - Auto Scaling Group
@@ -337,7 +337,7 @@ terraform destroy
 - CloudWatch Monitoring
 - HTTPS with ACM
 
-# 👨‍💻 Author
+# Author
 
 **Rahul Sahane**
 
@@ -345,6 +345,6 @@ Linux & Cloud Administrator • RHCSA • RHCE • Azure Certified
 
 GitHub: https://github.com/rahulsahaneDEVOPS
 
-# 📄 License
+# License
 
 MIT License.
