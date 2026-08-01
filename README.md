@@ -159,184 +159,105 @@ docker logs <container>
 
 ![01 User Service Docker Build](screenshots/01_user_service_docker_build.png)
 
-
-This screenshot shows the successful Docker image build for the User Service. The image is created successfully and tagged for deployment.
-
 ## Screenshot 02 — All Docker Images
 
 ![02 All Docker Images](screenshots/02_all_docker_images.png)
-
-
-This screenshot verifies that all required Docker images have been built successfully and are available locally.
 
 ## Screenshot 03 — User Service Container Running
 
 ![03 User Service Container Running](screenshots/03_user_service_container_running.png)
 
-
-This screenshot shows the successful Docker image build for the Product Service.
-
 ## Screenshot 04 — Dockerhub Tagged Images
 
 ![04 Dockerhub Tagged Images](screenshots/04_dockerhub_tagged_images.png)
-
-
-This screenshot shows the successful Docker image build for the Cart Service.
 
 ## Screenshot 05 — Dockerhub Repositories
 
 ![05 Dockerhub Repositories](screenshots/05_dockerhub_repositories.png)
 
-
-This screenshot shows the successful Docker image build for the Order Service.
-
 ## Screenshot 06 — Terraform Version
 
 ![06 Terraform Version](screenshots/06_terraform_version.png)
-
-
-This screenshot displays the Frontend Docker image build process.
 
 ## Screenshot 07 — Iam User Created
 
 ![07 Iam User Created](screenshots/07_iam_user_created.png)
 
-
-This screenshot confirms the project repository structure before deployment.
-
 ## Screenshot 08 — Access Key Created
 
 ![08 Access Key Created](screenshots/08_access_key_created.png)
-
-
-This screenshot shows the Terraform provider configuration.
 
 ## Screenshot 09 — Aws Configure
 
 ![09 Aws Configure](screenshots/09_aws_configure.png)
 
-
-This screenshot shows the Terraform network configuration.
-
 ## Screenshot 10 — Aws Identity
 
 ![10 Aws Identity](screenshots/10_aws_identity.png)
-
-
-This screenshot displays the Terraform variables configuration.
 
 ## Screenshot 11 — Terraform Files Created
 
 ![11 Terraform Files Created](screenshots/11_terraform_files_created.png)
 
-
-This screenshot shows the Terraform outputs configuration.
-
 ## Screenshot 12 — Terraform Files Created
 
 ![12 Terraform Files Created](screenshots/12_terraform_files_created.png)
-
-
-This screenshot displays the EC2 user-data bootstrap script used for automated provisioning.
 
 ## Screenshot 13 — Network Tf
 
 ![13 Network Tf](screenshots/13_network_tf.png)
 
-
-This screenshot shows the Terraform security group configuration for required ports.
-
 ## Screenshot 14 — A Security Group Tf
 
 ![14 A Security Group Tf](screenshots/14_A_security_group_tf.png)
-
-
-This screenshot shows the Terraform EC2 instance resource definition.
 
 ## Screenshot 15 — Security Group Tf
 
 ![14 Security Group Tf](screenshots/14_security_group_tf.png)
 
-
-This screenshot verifies the Terraform configuration files before execution.
-
 ## Screenshot 16 — Ec2 Tf
 
 ![15 Ec2 Tf](screenshots/15_ec2_tf.png)
-
-
-This screenshot shows successful execution of 'terraform init'.
 
 ## Screenshot 17 — Terraform Init
 
 ![16 Terraform Init](screenshots/16_terraform_init.png)
 
-
-This screenshot confirms that 'terraform validate' completed successfully without errors.
-
 ## Screenshot 18 — Terraform Validate
 
 ![17 Terraform Validate](screenshots/17_terraform_validate.png)
-
-
-This screenshot shows the successful Terraform execution plan before resource creation.
 
 ## Screenshot 19 — Terraform Plan Success
 
 ![18 Terraform Plan Success](screenshots/18_terraform_plan_success.png)
 
-
-This screenshot displays the AWS resources that Terraform will provision.
-
 ## Screenshot 20 — Terraform Apply Success
 
 ![19 Terraform Apply Success](screenshots/19_terraform_apply_success.png)
-
-
-This screenshot confirms successful infrastructure provisioning using Terraform.
 
 ## Screenshot 21 — Ec2 Ssh Login
 
 ![20 Ec2 Ssh Login](screenshots/20_ec2_ssh_login.png)
 
-
-This screenshot shows the EC2 instance running successfully in AWS.
-
 ## Screenshot 22 — Docker Ps
 
 ![21 Docker Ps](screenshots/21_docker_ps.png)
-
-
-This screenshot displays the deployed e-commerce application in the browser.
 
 ## Screenshot 23 — Frontend Live
 
 ![22 Frontend Live](screenshots/22_frontend_live.png)
 
-
-This screenshot verifies that all application containers are running successfully.
-
 ## Screenshot 24 — Docker Images
 
 ![23 Docker Images](screenshots/23_docker_images.png)
-
-
-This screenshot confirms that all Docker images are available on the EC2 instance.
 
 ## Screenshot 25 — Cloud Init Status
 
 ![24 Cloud Init Status](screenshots/24_cloud_init_status.png)
 
-
-This screenshot verifies that cloud-init completed successfully and the EC2 initialization finished without errors.
-
 ## Screenshot 26 — Userdata Log
 
 ![25 Userdata Log](screenshots/25_userdata_log.png)
-
-
-Deployment step completed successfully.
-
 
 # Troubleshooting
 
